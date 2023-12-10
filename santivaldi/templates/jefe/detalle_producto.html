@@ -1,0 +1,107 @@
+{% extends 'app/index.html' %}
+{%load static%}
+
+
+{% block titulo %}
+
+{%endblock%}
+
+{% block contenido %}
+{% load humanize%}
+
+<div class="container">
+    <h1 class="heading-1">Abarrotes</h1>
+    <div class="row">
+        {% if app_producto %}
+            {% for prod in app_producto %}
+                {% if prod.categoria == "abarrotes" or prod.categoria == "Abarrotes" %} 
+                    <div class="col-md-3 mb-2">
+                        <div class="card w-100">
+                            <img src="{{ prod.imagen.url }}" class="card-img-top" alt="Producto">
+                            <div class="card-body">
+                                <h3 class="card-title" style="display: flex; justify-content: center;">{{ prod.nombre_producto }}</h3>
+                                <h5 class="card-title" style="display: flex; justify-content: center;">Stock (Unidad): {{ prod.stock}}</h5>
+                                <h5 class="card-title" style="display: flex; justify-content: center;">${{ prod.precio|intcomma}}</h5>
+                                <h5 class="card-text" style="display: flex; justify-content: center;">Fecha Ingreso: <br> {{ prod.fecha_ingreso  }}</h5>
+                               
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+       
+        {% endif %}
+
+
+    </div>
+</div>
+
+
+
+<div class="container">
+    <h1 class="heading-1">Repostería</h1>
+    <div class="row">
+        {% if app_producto %}
+            {% for prod in app_producto %}
+            {% if prod.categoria == "reposteria" or prod.categoria == "Reposteria" %}
+                    <div class="col-md-3 mb-2">
+                        <div class="card w-100">
+                            <img src="{{ prod.imagen.url }}" class="card-img-top" alt="Producto">
+                            <div class="card-body">
+                                <h3 class="card-title" style="display: flex; justify-content: center;">{{ prod.nombre_producto }}</h3>
+                                <h5 class="card-title" style="display: flex; justify-content: center;">Stock (Unidad): {{ prod.stock}}</h5>
+                                <h5 class="card-title" style="display: flex; justify-content: center;">${{ prod.precio|intcomma}}</h5>
+                                <h5 class="card-text" style="display: flex; justify-content: center;">Fecha Ingreso: <br> {{ prod.fecha_ingreso  }}</h5>
+                               
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+        <div class="col-md-12">
+            <p style="font-size: 16px;">No hay productos de repostería ingresados.</p>
+        </div>
+        {% endif %}
+
+
+    </div>
+</div>
+
+
+
+<div class="container">
+    <h1 class="heading-1">Panadería</h1>
+    <div class="row">
+        {% if app_producto %}
+            {% for prod in app_producto %}
+            {% if prod.categoria == "panaderia" or prod.categoria == "Panadería" %}
+                    <div class="col-md-3 mb-2">
+                        <div class="card w-100">
+                            <img src="{{ prod.imagen.url }}" class="card-img-top" alt="Producto">
+                            <div class="card-body">
+                                <h3 class="card-title" style="display: flex; justify-content: center;">{{ prod.nombre_producto }}</h3>
+                                <h5 class="card-title" style="display: flex; justify-content: center;">Stock (Unidad): {{ prod.stock}}</h5>
+                                <h5 class="card-title" style="display: flex; justify-content: center;">${{ prod.precio|intcomma}}</h5>
+                                <h5 class="card-text" style="display: flex; justify-content: center;">Fecha Ingreso: <br> {{ prod.fecha_ingreso  }}</h5>
+                               
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+        <div class="col-md-12">
+            <p style="font-size: 16px;">No hay productos de panadería ingresados.</p>
+        </div>
+        {% endif %}
+
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block contenido2 %}
+{% endblock %}
