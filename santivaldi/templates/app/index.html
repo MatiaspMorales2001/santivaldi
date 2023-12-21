@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+	<head>
+		{%load static %}
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="icon" href="{% static 'img/icono.jpg'%}" type="image/x-icon">
+		<title>SantiValdi</title>
+		<link rel="stylesheet" href="{%static 'css/styles.css' %}" />
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+	</head>
+	<body style="background-color: var(--primary-color);">
+
+		<header>
+			
+			<div class="container-hero">
+				<div class="container hero">
+					<div class="container-logo">
+						<img src="" alt="">
+						{%if user.is_authenticated%}
+						<h1 class="logo"><a href="/">Menu De Opciones</a></h1>
+						{% else %}
+						<h1 class="logo"><a href="/">Santivaldi</a></h1>
+						{% endif %}
+					</div>
+					<div class="customer-support">
+						<i class="fa-solid fa-headset"></i>
+						<div class="content-customer-support">
+							<span class="text">Número De Contacto</span>
+							<span class="number">+569 4236 3597 </span>
+						</div>
+					</div>					
+				</div>
+			</div>
+
+			<div class="container-navbar">
+				<nav class="navbar container">
+					<i class="fa-solid fa-bars" id="menuIcon"></i>
+					<ul class="menu">
+						{% block nav %}
+						
+						
+						<li>
+							
+							{% if user.is_superuser %}
+								<!-- Código para el jefe (superusuario) -->
+								 <li><a href="/registrar_trabajador" id="ingresar_trabajador">Agregar Trabajador</a></li>
+								<li><a href="/trabajadores" id="trabajador">Ver Trabajadores</a></li>
+								<li><a href="/detalle_producto" id=detalles">Información De Productos</a></li>
+								<a href="/CerrarSesion" id="cerrar-sesion">Cerrar Sesión</a>
+
+							{% elif user.is_staff %}
+								<!-- Código para el administrador (staff) -->
+								<li><a href="/ingresar_producto" id="ingresar_producto">Ingresar Productos</a></li>
+								<li><a href="/productos" id="ver_productos">Ver Productos</a></li>
+								<a href="/CerrarSesion" id="cerrar-sesion">Cerrar Sesión</a>
+
+							{% elif user.is_authenticated %}
+								<!-- Código para el vendedor (usuario autenticado pero no superusuario ni staff) -->
+								<li><a href="/ver_pedidos" id="ver_pedidos">Ver Pedidos</a></li>
+								<li><a href="/ver_stock" id="ver_stock">Ver Stock</a></li>
+								<a href="/CerrarSesion" id="cerrar-sesion">Cerrar Sesión</a>
+
+							{% else %}
+								<!-- Código para el cliente (usuario no autenticado) -->
+								<li><a href="/" id="Inicio">Inicio</a></li>
+								<li><a href="/panaderia" id="panaderia">Panadería</a></li>
+								<li><a href="/reposteria" id="reposteria">Repostería</a></li>
+								<li><a href="/abarrotes" id="abarrotes">Abarrotes</a></li>
+								<li><a href="/#SobreNosotros" id="Sobre-Nosotros">Sobre Nosotros</a></li>
+								<li><a href="/#Contacto">Contacto</a></li>
+								<li><a href="/formulario">Realizar Pedido</a></li>
+								<li><a href="/IniciarSesion" id="iniciar-sesion">Iniciar Sesión</a></li>
+							{% endif %}
+						{% endblock %}
+						<script src="{% static 'js/menu.js'%}"></script>
+					</ul>
+				</nav>
+			</div>
+			
+		</header>
+	
+
+		{% block section %}
+		<section class="banner" style="background-image: linear-gradient(100deg, #000000, #00000020),
+		url('static/img/banner.jpg');">
+			<div class="content-banner">
+				<p>Pan y pasteles Deliciosos</p>
+				<h2>100% Natural <br />Pan Fresco</h2>
+			</div>
+		</section>
+		{% endblock%}
+		<main class="main-content">
+
+
+			<section class="container top-categories">
+				{% block titulo %}
+				<h1 class="heading-1">Nuestra Especialidad</h1>
+				{%endblock%}
+				{% block contenido %}
+				<div class="container-categories">
+					<div class="card-category category-panaderia" style="background-image: linear-gradient(#00000080, #00000080),
+					url('static/img/panaderia.jpg');">
+						<p>Panadería</p>
+
+					</div>
+					<div class="card-category category-reposteria" style="background-image: linear-gradient(#00000080, #00000080),
+					url('static/img/reposteria.jpg');">
+						<p>Repostería</p>
+					</div>
+					<div class="card-category category-abarrotes" style="background-image: linear-gradient(#00000080, #00000080),
+					url('static/img/abarrotes.jpg');">
+						<p>Abarrotes</p>
+					</div>
+				{% endblock %}
+				</div>
+			</section>
+
+			
+
+	
+
+			{% block contenido2 %}
+			<section class="container blogs">
+				<h1 class="heading-1" id="SobreNosotros" >Sobre Nosotros</h1>
+
+				<div class="container-blogs">
+					<div class="card-blog">
+						<div class="container-img">
+							
+
+						</div>
+						<div class="content-blog">
+					
+							
+							
+						</div>
+					</div>
+					<div class="card-blog">
+						<div class="container-img">
+							<img src="{% static 'img/icono.jpg'%}" alt="Imagen Blog 2" />
+	
+						</div>
+						<div class="content-blog"  style="margin-bottom: 100px;">
+					
+	
+							<p>
+								En SantiValdi, nos emociona compartir nuestra pasión por la repostería contigo. 
+								Somos Miguel Martínez y Angélica Guzmán, un emprendimiento familiar que quiere compartir sus sabores con la hermosa ciudad de Valdivia.
+							</p>
+							
+						</div>
+					</div>
+					
+			
+						<div class="content-blog" >
+							
+						
+							
+						</div>
+					</>
+				</div>
+			</section>
+			{% endblock%}
+		</main>
+
+		<footer class="footer">
+			<div class="container container-footer">
+				<div class="menu-footer">
+					<div class="contact-info">
+						
+						
+					</div>
+
+					<div class="information"">
+						<p class="title-footer">Información de Contacto</p>
+						<p  id="Contacto" style="font-size: 20px;">
+						
+							Teléfono: +569 4236 3597 <br>
+							EmaiL: miguel.martinez.smok@gmail.com
+						
+					</div>
+
+					<div class="my-account" >
+						<p class="title-footer">Ubicación</p>
+
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3063.129196345335!2d-73.22279702312375!3d-39.84893765307307!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9615ef114f1c7433%3A0x44225141f399e3a6!2sMinimarket%20SantiValdi!5e0!3m2!1ses-419!2scl!4v1701557636234!5m2!1ses-419!2scl" width="100%" height="100" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+					</div>
+
+					
+					
+				</div>
+
+				<div class="copyright">
+					<p>
+						&copy; SantiValdi Todos los derechos Reservados &copy; 2023
+					</p>
+
+				</div>
+			</div>
+		</footer>
+
+		<script
+			src="https://kit.fontawesome.com/81581fb069.js"
+			crossorigin="anonymous"
+		></script>
+		<script src="{% static 'js/desplegar-nav.js'%}"></script>
+
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+	</body>
+</html>

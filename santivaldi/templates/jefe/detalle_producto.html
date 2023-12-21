@@ -1,0 +1,171 @@
+{% extends 'app/index.html' %}
+{%load static%}
+
+
+{% block titulo %}
+{%endblock%}
+
+{% block section %}
+{%endblock%}
+
+{% block contenido %}
+{% load humanize%}
+<div class="container mt-5">
+    <div class="row">
+        <h2 style=" justify-content: center;">Abarrotes</h2>
+    </div>
+    {% if app_producto %}
+    <div class="table-responsive"> <!-- Add this div -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Nombre</td>
+                    <td>Stock</td>
+                    <td>Precio</td>
+                    <td>Ingresado</td>
+    
+                </tr>
+            </thead>
+            <tbody>
+                {% for prod in app_producto %}
+                {% if prod.categoria == "abarrotes" or prod.categoria == "Abarrotes" %} 
+                <tr>
+                    <td>{{ prod.nombre_producto }}</td>
+                    <td>(Unidad): {{ prod.stock}}</td>
+                    <td>${{ prod.precio|intcomma}}</td>
+                    <td>{{ prod.fecha_ingreso  }}</td>
+
+                </tr>
+                {% endif %}
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div> <!-- Close the div -->
+    {% else %}
+    <div class="col-md-12">
+        <p style="font-size: 16px;">No hay Empleados ingresados.</p>
+    </div>
+  
+    {% endif %}
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <h2 style=" justify-content: center;">Repostería</h2>
+    </div>
+    {% if app_producto %}
+    <div class="table-responsive"> <!-- Add this div -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Nombre</td>
+                    <td>Stock</td>
+                    <td>Precio</td>
+                    <td>Ingresado</td>
+    
+                </tr>
+            </thead>
+            <tbody>
+                {% for prod in app_producto %}
+                {% if prod.categoria == "reposteria" or prod.categoria == "Reposteria" %}
+
+                <tr>
+                    <td>{{ prod.nombre_producto }}</td>
+                    <td>(Unidad): {{ prod.stock}}</td>
+                    <td>${{ prod.precio|intcomma}}</td>
+                    <td>{{ prod.fecha_ingreso  }}</td>
+
+                </tr>
+                {% endif %}
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div> <!-- Close the div -->
+    {% else %}
+    <div class="col-md-12">
+        <p style="font-size: 16px;">No hay Empleados ingresados.</p>
+    </div>
+  
+    {% endif %}
+</div>
+
+
+
+
+
+
+<div class="container mt-5">
+    <div class="row">
+        <h2 style=" justify-content: center;">Panadería</h2>
+    </div>
+    {% if app_producto %}
+    <div class="table-responsive"> <!-- Add this div -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Nombre</td>
+                    <td>Stock</td>
+                    <td>Precio</td>
+                    <td>Ingresado</td>
+    
+                </tr>
+            </thead>
+            <tbody>
+                {% for prod in app_producto %}
+                {% if prod.categoria == "panaderia" or prod.categoria == "Panadería" %}
+                <tr>
+                    <td>{{ prod.nombre_producto }}</td>
+                    <td>(KG): {{ prod.stock}}</td>
+                    <td>${{ prod.precio|intcomma}}</td>
+                    <td>{{ prod.fecha_ingreso  }}</td>
+
+                </tr>
+                {% endif %}
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div> <!-- Close the div -->
+    {% else %}
+    <div class="col-md-12">
+        <p style="font-size: 16px;">No hay Empleados ingresados.</p>
+    </div>
+  
+    {% endif %}
+</div>
+
+
+<style>
+    table {
+        width: 100%; /* Change this to 100% */
+        margin: auto;
+        border-collapse: collapse;
+        font-size: 20px;
+    }
+
+    th, td {
+        border: 2px solid #dddddd;
+        text-align: left;
+        padding: 10px;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .btn {
+        padding: 12px;
+        text-decoration: none;
+        color: white;
+    }
+
+    .btn-danger {
+        background-color: #ff0000;
+    }
+</style>
+{% endblock %}
+
+{% block contenido2 %}
+{% endblock %}
